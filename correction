@@ -1,0 +1,44 @@
+"""
+currency.py
+
+Convert US dollars to other currencies.
+Also time how long it took program to run.
+"""
+
+import sys
+import timeit
+
+rates = [
+    ["EUR",  .90],
+    ["GBP",  .82],
+    ["CNY", 7.14]
+]
+
+def my_function():
+
+    print("Convert your dollars to EUR, GBP, and CNY")
+    print()
+
+    while True:
+        try:
+            dol = float(input("How many US Dollars do you have? "))
+        except EOFError:
+            sys.exit(1)
+        except KeyboardInterrupt:
+            sys.exit(1)
+        except ValueError:
+            print()
+            print("Please enter a numerical amount.")
+        else:
+            break
+
+    print(f"{dol:.2f} USD converts to:")
+    print()
+    
+    for rate in rates:
+        print(f"{rate[1] * dol:5.2f} {rate[0]}")
+    print()
+
+secs = timeit.timeit(my_function, number = 1)
+print(f"Note: this program took {secs:.2f} seconds to run.")
+sys.exit(0)
